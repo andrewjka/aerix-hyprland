@@ -14,16 +14,7 @@ hl.config({
         },
 
         blur = {
-            variant = "acrylic",
-            enabled = true,
-            popups = true,
-            new_optimizations = true,
-
-            size = 2,
-            passes = 1,
-            noise = 0.0256,
-            vibrancy = 0.256,
-            contrast = 0.512,
+            enabled = false
         }
     }
 })
