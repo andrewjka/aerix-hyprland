@@ -5,10 +5,10 @@ hl.config({
         float_gaps = 10,
 
         resize_on_border = true,
-        border_size = 1,
+        border_size = 0,
         col = {
-            active_border   = "rgba(208,208,208,0.64)",
-            inactive_border = "rgba(74,74,74,0.32)",
+            active_border   = "rgba(208,208,208,0.32)",
+            inactive_border = "rgba(74,74,74,0.16)",
         },
 
         layout = "master",

@@ -1,7 +1,7 @@
 
 local mainMod = "SUPER"
-local terminal = "ghostty"
-local fileManager = "hyprfm"
+local terminal = "kitty"
+local fileManager = "nautilus"
 local browser = "zen-browser"
 
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
@@ -21,7 +21,7 @@ hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
 
 
-for i = 1, 9 do
+for i = 1, 10 do
     local key = i % 10
     hl.bind(mainMod .. " + " .. key,             hl.dsp.focus({ workspace = i}))
     hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
