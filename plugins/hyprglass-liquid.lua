@@ -99,7 +99,7 @@ hg.config({
     -- Высота выпуклой линзы на краю стекла.
     -- 0 = мягкий край без выраженной линзы.
     -- Чем больше значение, тем сильнее изгиб.
-    edge_height = 30,
+    edge_height = 15,
 
     -- Отражение изображения окружающего фона
     -- внутри выпуклой кромки.
@@ -283,9 +283,10 @@ hg.config({
         -- эффектом HyprGlass на выбранных слоях.
         manage_blur = true,
 
+
         -- Общий пресет для всех слоёв.
         -- Пустая строка = использовать default_preset.
-        preset = "",
+        preset = "layer",
 
         -- Способ определения стеклянной области:
         -- "auto"    = автоматически;
@@ -297,12 +298,12 @@ hg.config({
         -- Минимальный alpha-канал пикселя,
         -- при котором появляется стекло.
         -- Помогает исключать слабые тени.
-        mask_threshold = 0.02,
+        mask_threshold = 0.07,
 
         -- Плавность появления стекла
         -- на границах alpha-маски.
         -- 0 = жёсткая граница.
-        mask_feather = 0.01,
+        mask_feather = 0,
 
         -- Пересчитывать стеклянный фон,
         -- когда изображение позади изменяется.
@@ -386,27 +387,22 @@ hg.config({
 
 
 -- ═══════════════════════════════════════════════
--- 12а. ПРЕСЕТ ДЛЯ ТОНКИХ ПОВЕРХНОСТЕЙ
+-- 12а. ПРЕСЕТЫ
 -- ═══════════════════════════════════════════════
 
--- Бар (~48 px) и Dock (~68 px) слишком низкие для кромки 22 px:
--- две кромки сходятся посередине и дают «шов» (полоску) внутри панели.
--- Здесь кромка уже и ниже, остальное берётся из общих настроек.
-hg.preset("thin", {
-    edge_height = 14,
-    refraction_strength = 0.7,
-    bevel_size = 1.5,
-})
+
 
 -- У status bar верхняя кромка скрыта экраном, поэтому свет направлен
 -- из нижнего правого угла: 135° = снизу справа.
 hg.preset("status-bar", {
-    edge_height = 14,
-    refraction_strength = 0.7,
-    bevel_size = 1.5,
+    inherits = "layer",
     specular_angle = 180,
     bevel_angle = 180,
 
+})
+
+hg.preset("layer", {
+    edge_thickness = 0,
 })
 
 
@@ -422,22 +418,19 @@ hg.layer("*")
 -- применяется к Dock и Bar, но не размывает уже отрисованную Qt-тень.
 hg.layer("aerix:dock-shadow", { exclude = true })
 hg.layer("aerix:status-bar-shadow", { exclude = true })
+hg.layer("aerix:workspace-overview-shadow", { exclude = true })
 hg.layer("aerix:keyboard-layout-shadow", { exclude = true })
-
--- Исключить поверхность обоев awww.
-hg.layer("awww-daemon", {
-    exclude = true,
-})
+hg.layer("aerix:volume-shadow", { exclude = true })
+hg.layer("aerix:brightness-shadow", { exclude = true })
+hg.layer("aerix:app-launcher-folder-shadow", { exclude = true })
+hg.layer("aerix:app-launcher-shadow", { exclude = true })
+hg.layer("awww-daemon", { exclude = true, })
 
 -- ═══════════════════════════════════════════════
 -- 13. ПРИВЯЗКА ПРЕСЕТА "thin" К ПАНЕЛЯМ
 -- ═══════════════════════════════════════════════
 
 hg.layer("aerix:status-bar", { preset = "status-bar" })
-hg.layer("aerix:dock-panel", { preset = "thin" })
-hg.layer("aerix:keyboard-layout", { preset = "thin" })
-hg.layer("aerix:workspace-overview", { preset = "thin"})
-
 
 
 -- ═══════════════════════════════════════════════

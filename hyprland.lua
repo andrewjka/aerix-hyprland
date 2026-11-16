@@ -4,8 +4,12 @@ hl.on("hyprland.start", function()
 end)
 
 require("plugins.hyprglass-liquid") --> blur
-require("plugins.hyprcapture") --> screenshots
-require("plugins.hyprcursor")
+
+-- Ecosystem -- 
+
+require("ecosystem.hyprcapture") --> screenshots
+require("ecosystem.hyprcursor")
+require("ecosystem.hyprsunset")
 
 
 require("env")
